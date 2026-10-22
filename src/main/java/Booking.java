@@ -61,10 +61,12 @@ public class Booking {
                 return false;
             }
 
+            // Checks if obj is a Booking object; if not, returns false and makes sure the two objects arent equal.
             if (!(obj instanceof Booking)) {
                 return false;
             }
 
+            // Converts obj to a booking object
             Booking other = (Booking) obj;
 
             return (this.userId.equals(other.getUserId()) &&

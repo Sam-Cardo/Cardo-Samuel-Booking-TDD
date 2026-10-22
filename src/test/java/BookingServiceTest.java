@@ -78,14 +78,14 @@ class BookingServiceTest {
 
     // Boundry Testing
     @Test
-    void bookingExactlyThreeHoursIsAllowed() {
+    void threeHourSlotBoundryTest() {
         Booking booking = service.book("alice", "R1", slot(10, 13));
 
         assertEquals(new Booking("alice", "R1", slot(10, 13)), booking);
     }
 
     @Test
-    void bookingTouchingSlotsInSameRoomIsAllowed() {
+    void touchingSlotsBoundryTest() {
         service.book("alice", "R1", slot(10, 11));
 
         Booking booking = service.book("bob", "R1", slot(11, 12));
@@ -94,7 +94,7 @@ class BookingServiceTest {
     }
 
     @Test
-    void bookingSameUserAndSlotInDifferentRoomsIsRejected() {
+    void sameUserDifferentRoomsBoundryTest() {
         service.book("alice", "R1", slot(10, 11));
 
         assertThrows(IllegalStateException.class, () -> {
