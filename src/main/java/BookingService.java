@@ -19,12 +19,19 @@ public class BookingService {
     /** Book a room for a user. Returns the new booking. */
 
     public Booking book(String userId, String roomId, TimeSlot slot) {
+        // R1
         if (rooms.findById(roomId) == null) {
             throw new IllegalArgumentException("Room does not exist");
         }
 
+        // R2
         if(!slot.getStart().isAfter(LocalDateTime.now(clock))) {
             throw new IllegalArgumentException("Booking must be in the Future and not the past");
+        }
+
+        //R3
+        if (Duration.between(slot.getStart(), slot.getEnd()).compareTo(MAX_SLOT) > 0) {
+            throw new IllegalArgumentException("Booking must not be longer than three hours");
         }
 
         Booking booking = new Booking(userId, roomId, slot);
