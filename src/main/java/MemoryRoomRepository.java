@@ -3,7 +3,7 @@ package main.java;
 import java.util.*;
 
 
-class MemoryRoomRepository implements IRoomRepository {
+public class MemoryRoomRepository implements IRoomRepository {
     private final Map<String, Room> rooms = new HashMap<>();
 
     @Override 

@@ -1,13 +1,10 @@
 package main.java;
 
 import java.util.*;
-import main.java.Booking;
-import main.java.TimeSlot;
-import main.java.Room;
-import main.java.IBookingRepository;
 
 
-class MemoryBookingRepository implements IBookingRepository {
+
+public class MemoryBookingRepository implements IBookingRepository {
     private final List<Booking> bookings = new ArrayList<>();
 
     @Override 
