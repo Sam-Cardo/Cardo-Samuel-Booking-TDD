@@ -11,6 +11,7 @@ import main.java.Room;
 // Step 1 of TDD Red
 public class RoomTests {
 
+    
     @Test 
     public void testRoomID() {
 
