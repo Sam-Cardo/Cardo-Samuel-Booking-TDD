@@ -34,7 +34,16 @@ public class BookingService {
             throw new IllegalArgumentException("Booking must not be longer than three hours");
         }
 
+        //R4
+        for (Booking booking : bookings.findByRoom(roomId)) {
+            if (slot.getStart().isBefore(booking.getTimeSlot().getEnd()) &&
+                slot.getEnd().isAfter(booking.getTimeSlot().getStart())) {
+                throw new IllegalStateException("Room is already booked");
+            }
+        }
+
         Booking booking = new Booking(userId, roomId, slot);
+        bookings.save(booking);
         return booking;
     }
 
