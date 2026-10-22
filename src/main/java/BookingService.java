@@ -42,6 +42,16 @@ public class BookingService {
             }
         }
 
+        // R5
+        for (Booking booking : bookings.findByUser(userId)) {
+            if (slot.getStart().isBefore(booking.getTimeSlot().getEnd()) &&
+                slot.getEnd().isAfter(booking.getTimeSlot().getStart())) {
+                throw new IllegalStateException("User already has a booking");
+            }
+        }
+
+
+
         Booking booking = new Booking(userId, roomId, slot);
         bookings.save(booking);
         return booking;
