@@ -75,4 +75,12 @@ class BookingServiceTest {
         () -> service.cancel("alice", "R1", slot(10, 11)));
     }
 
+    @Test
+    void bookingExactlyThreeHoursIsAllowed() {
+        Booking booking = service.book("alice", "R1", slot(10, 13));
+
+        assertEquals(new Booking("alice", "R1", slot(10, 13)), booking);
+    }
+
+
 }
