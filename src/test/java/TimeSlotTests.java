@@ -21,7 +21,7 @@ class TimeSlotTest {
         "10, 11, 11, 12, false",   // touching
         "10, 12, 11, 13, true",    // partly overlapping
         "10, 13, 11, 12, true",    // one completely inside the other
-        "10, 11, 12, 13, false",   // non-overlapping
+        "10, 11, 12, 13, false",   // non-overlapping each other
     })
     
     void overlapCases(int aStart, int aEnd, int bStart, int bEnd, boolean expected) {
