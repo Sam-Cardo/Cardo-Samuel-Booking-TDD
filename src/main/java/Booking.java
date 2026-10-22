@@ -55,22 +55,22 @@ public class Booking {
      * @return true if the bookings are equal, false objectwise
      */
 
-    // @Override 
-    //     public boolean equals(Object obj) {
-    //         if (obj == null) {
-    //             return false;
-    //         }
+    @Override 
+        public boolean equals(Object obj) {
+            if (obj == null) {
+                return false;
+            }
 
-    //         if (!(obj instanceof Booking)) {
-    //             return false;
-    //         }
+            if (!(obj instanceof Booking)) {
+                return false;
+            }
 
-    //         Booking other = (Booking) obj;
+            Booking other = (Booking) obj;
 
-    //         return (this.userId.equals(other.getUserId()) &&
-    //                 this.roomId.equals(other.getRoomId()) &&
-    //                 this.timeSlot.equals(other.getTimeSlot()));
-    //     }
+            return (this.userId.equals(other.getUserId()) &&
+                    this.roomId.equals(other.getRoomId()) &&
+                    this.timeSlot.equals(other.getTimeSlot()));
+        }
 
     /**
      * Generates a hash code for this booking.
