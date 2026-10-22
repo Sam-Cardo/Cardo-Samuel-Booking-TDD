@@ -24,6 +24,7 @@ class TimeSlotTest {
         "10, 11, 12, 13, false",   // non-overlapping each other
     })
     
+    // overlap cases
     void overlapCases(int aStart, int aEnd, int bStart, int bEnd, boolean expected) {
         assertEquals(expected, slot(aStart, aEnd).overlaps(slot(bStart, bEnd)));
         assertEquals(expected, slot(bStart, bEnd).overlaps(slot(aStart, aEnd)));  
