@@ -48,21 +48,29 @@ public class Booking {
     }
 
     /**
-     * Checks if this booking is equal to another booking.
+     * Checks if this booking is equal to anobject booking.
      * Two bookings are consIdered equal if they have the 
      * same userId, roomId, and timeSlot.
-     * @param other the other booking to compare with
-     * @return true if the bookings are equal, false otherwise
+     * @param object the object booking to compare with
+     * @return true if the bookings are equal, false objectwise
      */
 
-    public boolean equals(Booking other) {
-        if (other == null) {
-            return false;
+    @Override 
+        public boolean equals(Object obj) {
+            if (obj == null) {
+                return false;
+            }
+
+            if (!(obj instanceof Booking)) {
+                return false;
+            }
+
+            Booking other = (Booking) obj;
+
+            return (this.userId.equals(other.getUserId()) &&
+                    this.roomId.equals(other.getRoomId()) &&
+                    this.timeSlot.equals(other.getTimeSlot()));
         }
-        return this.userId.equals(other.userId) &&
-               this.roomId.equals(other.roomId) &&
-               this.timeSlot.equals(other.timeSlot);
-    }
 
     /**
      * Generates a hash code for this booking.
