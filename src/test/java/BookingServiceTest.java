@@ -75,11 +75,22 @@ class BookingServiceTest {
         () -> service.cancel("alice", "R1", slot(10, 11)));
     }
 
+
+    // Boundry Testing
     @Test
     void bookingExactlyThreeHoursIsAllowed() {
         Booking booking = service.book("alice", "R1", slot(10, 13));
 
         assertEquals(new Booking("alice", "R1", slot(10, 13)), booking);
+    }
+
+    @Test
+    void bookingTouchingSlotsInSameRoomIsAllowed() {
+        service.book("alice", "R1", slot(10, 11));
+
+        Booking booking = service.book("bob", "R1", slot(11, 12));
+
+        assertEquals(new Booking("bob", "R1", slot(11, 12)), booking);
     }
 
 
