@@ -105,16 +105,4 @@ public final class TimeSlot
                 ", end=" + end +
                 '}';
     }
-
-    public static void main(String[] args) {
-        LocalDateTime start = LocalDateTime.of(2027, 1, 11, 10, 0);
-        LocalDateTime end = LocalDateTime.of(2027, 1, 11, 12, 0);
-        TimeSlot slot = new TimeSlot(start, end);
-
-        System.out.println("Start: " + slot.getStart());
-        System.out.println("End: " + slot.getEnd());
-        System.out.println("Duration: " + slot.duration().toHours() + " hours");
-    }
-
-
 }
