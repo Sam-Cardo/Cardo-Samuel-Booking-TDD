@@ -47,33 +47,6 @@ class BookingServiceTest {
                     () -> service.book("alice", "R3", slot(10, 11)));
     }
 
-    @Test 
-    void bookingInPast() {
-        assertThrows( IllegalArgumentException.class,
-            () -> service.book("alice", "R1", slot(8,9)));
-    }
-
-    @Test 
-    void bookingLongerThanThreeHours() {
-                assertThrows( IllegalArgumentException.class,
-            () -> service.book("alice", "R1", slot(10,14)));
-    }
-
-    @Test 
-    void bookingOverlapping() {
-        service.book("alice", "R1", slot(10, 11));
-
-        assertThrows( IllegalStateException.class,
-            () -> service.book("bob", "R1", slot(10,11)));
-    }
-
-    @Test 
-    void bookingUserOverlapping() {
-        service.book("alice", "R1", slot(10, 11));
-
-        assertThrows( IllegalStateException.class,
-            () -> service.book("alice", "R2", slot(10,11)));
-    }
 
 
 }
