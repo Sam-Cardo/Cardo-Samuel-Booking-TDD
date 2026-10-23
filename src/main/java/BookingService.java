@@ -146,7 +146,7 @@ public class BookingService {
         return userBookings;
     } 
 
-    // D1
+        // D1
     class holdThreeBookingsNotEnded implements BookingRule {
 
         private final IBookingRepository bookings;
@@ -177,5 +177,7 @@ public class BookingService {
                 throw new IllegalStateException("A booking may not start more than 14 days after the clock's current date");
             }
         } 
-    }
+    }	
+
+
 }
