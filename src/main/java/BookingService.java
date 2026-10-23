@@ -141,7 +141,41 @@ public class BookingService {
     //R7
     /** A user's bookings, earliest first. */
     public List<Booking> bookingsFor(String userId) {
-        throw new UnsupportedOperationException("TODO: implement using TDD");
+        List<Booking> userBookings = new java.util.ArrayList<>(bookings.findByUser(userId));
+        userBookings.sort(java.util.Comparator.comparing(booking -> booking.getTimeSlot().getStart()));
+        return userBookings;
     } 
-    
+
+    // D1
+    class holdThreeBookingsNotEnded implements BookingRule {
+
+        private final IBookingRepository bookings;
+
+        holdThreeBookingsNotEnded(IBookingRepository bookings) {
+            this.bookings = bookings;
+        }
+
+
+        public void check(String userId, String roomId, TimeSlot slot) {
+            int count = 0;
+
+            for(Booking booking : bookings.findByUser(userId)) {
+                if(booking.getTimeSlot().getEnd().isAfter(LocalDateTime.now())) {
+                    count ++;
+                }
+            }
+            if (count >= 3) {
+                throw new IllegalStateException("Too many Rooms Booked!");
+            }
+       }
+   }
+
+    //D2
+    class bookingforteendaysafterclockdate implements BookingRule {
+        public void check(String userId, String roomId, TimeSlot slot) {
+            if(slot.getStart().isAfter(LocalDateTime.now().plusDays(14))) {
+                throw new IllegalStateException("A booking may not start more than 14 days after the clock's current date");
+            }
+        } 
+    }
 }

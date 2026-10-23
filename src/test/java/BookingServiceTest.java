@@ -2,6 +2,8 @@ package test.java;
 
 import org.junit.jupiter.api.*;
 import java.time.*;
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 import main.java.Booking;
@@ -73,6 +75,19 @@ class BookingServiceTest {
     void cancellingExistingBooking() {
             assertThrows(IllegalArgumentException.class,
         () -> service.cancel("alice", "R1", slot(10, 11)));
+    }
+
+    @Test
+    void bookingsForReturnsInStartTimeOrder() {
+        service.book("alice", "R1", slot(14, 15));
+        service.book("alice", "R2", slot(9, 10));
+        service.book("bob", "R3", slot(10, 11));
+
+        List<Booking> bookings = service.bookingsFor("alice");
+
+        assertEquals(2, bookings.size());
+        assertEquals("R2", bookings.get(0).getRoomId());
+        assertEquals("R1", bookings.get(1).getRoomId());
     }
 
 
